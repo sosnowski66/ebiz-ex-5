@@ -2,21 +2,16 @@ val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 val koin_version = "3.1.6"
-val hikariCpVersion = "5.0.1"
-val flywayVersion = "8.5.4"
-val postgresql_version = "42.3.0"
-
 
 plugins {
     application
     kotlin("jvm") version "1.6.20"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
-group = "bloczek.pl"
+group = "com.example"
 version = "0.0.1"
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClass.set("com.example.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -29,25 +24,14 @@ repositories {
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
+    implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-
-    // Serialization
-    implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
-    implementation("io.ktor:ktor-serialization-gson:$ktor_version")
-    implementation("io.ktor:ktor-client-gson:$ktor_version")
-    // Dependency injection
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
-
-    // Database
-    implementation("org.jetbrains.exposed", "exposed-core", "0.38.1")
-    implementation("org.jetbrains.exposed", "exposed-jdbc", "0.38.1")
-//    implementation("com.h2database:h2:2.1.210")
-//    implementation("org.xerial:sqlite-jdbc:3.30.1")
-    implementation("org.postgresql:postgresql:$postgresql_version")
-    implementation("com.zaxxer:HikariCP:$hikariCpVersion")
-    implementation("org.flywaydb:flyway-core:$flywayVersion")
+//    implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
+//    implementation("org.kodein.di:kodein-di-framework-ktor-server-jvm:7.10.0")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
