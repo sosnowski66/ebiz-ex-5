@@ -1,7 +1,8 @@
-package bloczek.pl.utils
+package bloczek.pl.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import io.ktor.server.config.*
 import kotlinx.coroutines.Dispatchers
 import org.flywaydb.core.Flyway
 import org.jetbrains.exposed.sql.Database
@@ -13,17 +14,17 @@ object DatabaseFactory {
 
     private val log = LoggerFactory.getLogger(this::class.java)
 
-    fun connectAndMigrate() {
+    fun connectAndMigrate(config: ApplicationConfig) {
         log.info("Initialising database")
-        val pool = hikari()
+        val pool = hikari(config)
         Database.connect(pool)
         runFlyway(pool)
     }
 
-    private fun hikari(): HikariDataSource {
+    private fun hikari(appConfig: ApplicationConfig): HikariDataSource {
         val config = HikariConfig().apply {
-            driverClassName = "org.h2.Driver"
-            jdbcUrl = "jdbc:h2:mem:test"
+            driverClassName = appConfig.property("storage.driverClassName").getString()
+            jdbcUrl = appConfig.property("storage.jdbcURL").getString()
             maximumPoolSize = 3
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"

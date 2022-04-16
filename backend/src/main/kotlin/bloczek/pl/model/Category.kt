@@ -10,13 +10,8 @@ object Categories : Table() {
 
     override val primaryKey: PrimaryKey = PrimaryKey(id, name = "PK_Categories_Id")
 
-    fun toEntity(row: ResultRow) = Category(
-            id = row[id],
-            name = row[name]
-        )
+//    fun toEntity(row: ResultRow) = Category(
+//            id = row[id],
+//            name = row[name]
+//        )
 }
-
-data class Category(
-    val id: Int,
-    val name: String
-)

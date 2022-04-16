@@ -11,6 +11,7 @@ plugins {
     application
     kotlin("jvm") version "1.6.20"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 group = "bloczek.pl"
@@ -51,4 +52,12 @@ dependencies {
 
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+}
+
+tasks {
+    shadowJar {
+        manifest {
+            attributes(Pair("Main-Class", "io.ktor.server.netty.EngineMain"))
+        }
+    }
 }

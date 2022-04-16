@@ -1,7 +1,8 @@
 package bloczek.pl
 
-import bloczek.pl.utils.DatabaseFactory
-import bloczek.pl.utils.DatabaseFactory.dbQuery
+import bloczek.pl.model.Products
+import bloczek.pl.db.DatabaseFactory
+import bloczek.pl.db.DatabaseFactory.dbQuery
 import io.ktor.serialization.gson.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.contentnegotiation.*
@@ -85,7 +86,7 @@ fun Application.mainModule() {
 //        }
 //    }
 
-    DatabaseFactory.connectAndMigrate()
+    DatabaseFactory.connectAndMigrate(environment.config)
 
 
 
@@ -96,7 +97,7 @@ fun Application.mainModule() {
 //                val users = transaction { bloczek.pl.Users.selectAll().map { bloczek.pl.Users.toUser(it) } }
 
                 val users = dbQuery {
-                    Users.selectAll().map { Users.toUser(it) }
+                    Products.selectAll().map { Products.toProduct(it) }
                 }
 
                 call.respond(users)
