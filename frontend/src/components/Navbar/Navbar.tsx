@@ -23,7 +23,7 @@ const HideOnScroll: React.FC<HideOnScroll> = ({window, children}) => {
 const Navbar: React.FC = () => (
 	<div>
 		<HideOnScroll>
-			<AppBar>
+			<AppBar color="inherit">
 				<Toolbar>
 					<Typography variant="h6" component="div">
 						Sklep
