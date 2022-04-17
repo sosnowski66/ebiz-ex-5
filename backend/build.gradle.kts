@@ -37,6 +37,9 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-gson:$ktor_version")
     implementation("io.ktor:ktor-client-gson:$ktor_version")
+    implementation("io.ktor:ktor-server-cors:$ktor_version")
+
+
     // Dependency injection
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")

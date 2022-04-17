@@ -1,7 +1,6 @@
 package bloczek.pl.model
 
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 
 object Categories : Table() {

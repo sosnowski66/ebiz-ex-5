@@ -3,9 +3,14 @@ package bloczek.pl
 import bloczek.pl.model.Products
 import bloczek.pl.db.DatabaseFactory
 import bloczek.pl.db.DatabaseFactory.dbQuery
+import bloczek.pl.enums.Category
+import bloczek.pl.model.Categories
+import bloczek.pl.model.Product
+import io.ktor.http.*
 import io.ktor.serialization.gson.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.cors.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -70,6 +75,19 @@ fun Application.mainModule() {
         gson()
     }
 
+    install(CORS) {
+        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Patch)
+        allowHeader(HttpHeaders.Authorization)
+        allowHeader(HttpHeaders.AccessControlAllowOrigin)
+        allowNonSimpleContentTypes = true
+        allowCredentials = true
+        allowSameOrigin = true
+        allowHost("*", listOf("http", "https")) // frontendHost might be "*"
+    }
+
 //    Database.connect("jdbc:h2:mem:regular;DB_CLOSE_DELAY=-1;", "org.h2.Driver")
 //
 //    transaction {
@@ -111,6 +129,17 @@ fun Application.mainModule() {
                     }
                 }
                 call.respond(user)
+            }
+        }
+
+        route("/products") {
+            get {
+                call.respond(listOf(
+                    Product(1, "Product A", category = Category.SWEATSHIRTS),
+                    Product(2, "Product B", category = Category.SWEATSHIRTS),
+                    Product(3, "Product C", category = Category.SWEATSHIRTS),
+                    Product(4, "Product D", category = Category.SWEATSHIRTS)
+                ))
             }
         }
     }

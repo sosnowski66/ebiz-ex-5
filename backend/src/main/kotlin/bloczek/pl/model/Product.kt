@@ -1,7 +1,7 @@
 package bloczek.pl.model
 
+import bloczek.pl.db.postgresEnumeration
 import bloczek.pl.enums.Category
-import bloczek.pl.enums.postgresEnumeration
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
@@ -25,6 +25,6 @@ object Products : Table() {
 data class Product(
     val id: Int? = null,
     val name: String,
-    val description: String?,
+    val description: String? = null,
     val category: Category
 )
