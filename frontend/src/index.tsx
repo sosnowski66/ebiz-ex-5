@@ -26,7 +26,6 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
         <App />
-        <Checkbox defaultChecked/>
     </ThemeProvider>
   </React.StrictMode>
 );
