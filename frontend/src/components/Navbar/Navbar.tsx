@@ -2,14 +2,13 @@ import React from "react";
 import { AppBar, Slide, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 
 
-interface HideOnScroll {
-	window?: () => Window,
+interface HideOnScrollProps {
 	children: React.ReactElement
 }
 
-const HideOnScroll: React.FC<HideOnScroll> = ({window, children}) => {
+const HideOnScroll: React.FC<HideOnScrollProps> = ({children}) => {
 	const trigger = useScrollTrigger({
-		target: window ? window() : undefined
+		target: window
 	})
 
 	return (
@@ -23,7 +22,7 @@ const HideOnScroll: React.FC<HideOnScroll> = ({window, children}) => {
 const Navbar: React.FC = () => (
 	<div>
 		<HideOnScroll>
-			<AppBar color="inherit">
+			<AppBar elevation={0}>
 				<Toolbar>
 					<Typography variant="h6" component="div">
 						Sklep

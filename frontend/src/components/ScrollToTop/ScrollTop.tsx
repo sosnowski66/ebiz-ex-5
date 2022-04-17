@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, useScrollTrigger, Zoom } from "@mui/material";
 
-interface ScrollTop {
+interface ScrollTopProps {
 	children: React.ReactElement
 }
 
-const ScrollTop: React.FC<ScrollTop> = ({children}) => {
+const ScrollTop: React.FC<ScrollTopProps> = ({children}) => {
 	const trigger = useScrollTrigger({
 		target: window,
 		disableHysteresis: true,

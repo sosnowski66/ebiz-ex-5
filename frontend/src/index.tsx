@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@fontsource/roboto/300.css';
@@ -10,20 +9,6 @@ import '@fontsource/roboto/700.css';
 import { Checkbox, createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
 
-declare module '@mui/material/styles' {
-    interface Theme {
-        status: {
-            danger: string
-        };
-    }
-
-    interface ThemeOptions {
-        status?: {
-            danger?: string
-        };
-    }
-}
-
 
 const theme = createTheme({
     palette: {
@@ -32,9 +17,6 @@ const theme = createTheme({
         }
     }
 });
-
-
-
 
 
 const root = ReactDOM.createRoot(

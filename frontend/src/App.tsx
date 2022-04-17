@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Box, Container, Fab, Typography } from "@mui/material";
+import { Box, Container, Fab} from "@mui/material";
 import Navbar from "./components/Navbar/Navbar";
 import ScrollTop from "./components/ScrollToTop/ScrollTop";
 import { KeyboardArrowUp } from "@mui/icons-material";
@@ -26,7 +24,6 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
         </Container>
         <ScrollTop>
             <Fab color="secondary" size="small" aria-label="scroll back to top">
-
                 <KeyboardArrowUp />
             </Fab>
         </ScrollTop>
