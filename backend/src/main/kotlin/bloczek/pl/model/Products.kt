@@ -4,7 +4,6 @@ import bloczek.pl.db.postgresEnumeration
 import bloczek.pl.enums.Category
 import bloczek.pl.enums.Subcategory
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import java.math.BigDecimal
 
@@ -14,22 +13,19 @@ object Products : Table() {
 
     val description: Column<String> = text("description")
     val price: Column<BigDecimal> = decimal("price", 6, 2)
-    val brand: Column<Int> = reference("brand_id", Brands.id)
+    val brandId: Column<Int> = reference("brand_id", Brands.id)
 
     val category = postgresEnumeration<Category>("category", "Category")
     val subcategory = postgresEnumeration<Subcategory>("subcategory", "Subcategory")
-
-    fun toProduct(row: ResultRow) = Product(
-        id = row[id],
-        name = row[name],
-        description = row[description],
-        category = row[category]
-    )
 }
 
 data class Product(
-    val id: Int? = null,
+    val id: Int,
     val name: String,
+    val price: Double,
     val description: String? = null,
-    val category: Category
+    val brand: Brand,
+    val category: Category,
+    val subcategory: Subcategory
 )
+

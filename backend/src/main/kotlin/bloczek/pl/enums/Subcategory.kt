@@ -5,5 +5,4 @@ enum class Subcategory(
 ) {
     HOODIE("Z kapturem"),
     CRAWNECK("Bez kaptura")
-
 }

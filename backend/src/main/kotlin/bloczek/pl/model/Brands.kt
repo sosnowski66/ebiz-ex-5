@@ -9,3 +9,9 @@ object Brands : Table() {
 
     override val primaryKey = PrimaryKey(id, name = "PK_Brands_Id")
 }
+
+
+data class Brand(
+    val id: Int,
+    val name: String
+)

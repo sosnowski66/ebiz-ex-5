@@ -6,10 +6,10 @@ val hikariCpVersion = "5.0.1"
 val flywayVersion = "8.5.4"
 val postgresql_version = "42.3.0"
 
-
 plugins {
     application
     kotlin("jvm") version "1.6.20"
+    kotlin("plugin.serialization") version "1.6.10"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
@@ -32,13 +32,14 @@ dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-server-resources:$ktor_version")
 
     // Serialization
     implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-gson:$ktor_version")
     implementation("io.ktor:ktor-client-gson:$ktor_version")
     implementation("io.ktor:ktor-server-cors:$ktor_version")
-
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
     // Dependency injection
     implementation("io.insert-koin:koin-core:$koin_version")

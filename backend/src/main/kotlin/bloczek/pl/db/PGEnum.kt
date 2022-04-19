@@ -16,6 +16,6 @@ inline fun <reified T : Enum<T>> Table.postgresEnumeration(
 ) = customEnumeration(
     name = columnName,
     sql = postgresEnumName,
-    fromDb = {value -> enumValueOf<T>(value as String) },
+    fromDb = { value -> enumValueOf<T>(value as String) },
     toDb = { PGEnum(postgresEnumName, it) }
 )

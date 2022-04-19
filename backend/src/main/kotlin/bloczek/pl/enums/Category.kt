@@ -8,19 +8,14 @@ enum class Category(
             listOf(Subcategory.HOODIE, Subcategory.CRAWNECK)
     },
     SWEATSHIRTS("Bluzy") {
-        override fun getSubcategories(): List<Subcategory> {
-            TODO("Not yet implemented")
-        }
+        override fun getSubcategories(): List<Subcategory> =
+            listOf(Subcategory.HOODIE, Subcategory.CRAWNECK)
     },
     TROUSERS("Spodnie") {
-        override fun getSubcategories(): List<Subcategory> {
-            TODO("Not yet implemented")
-        }
+        override fun getSubcategories(): List<Subcategory> = listOf()
     },
-    ACCESSORIES("Akcesoria"){
-        override fun getSubcategories(): List<Subcategory> {
-            TODO("Not yet implemented")
-        }
+    ACCESSORIES("Akcesoria") {
+        override fun getSubcategories(): List<Subcategory> = listOf()
     };
 
     abstract fun getSubcategories(): List<Subcategory>

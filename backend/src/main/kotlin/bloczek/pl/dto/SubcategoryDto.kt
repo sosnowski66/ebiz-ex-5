@@ -1,3 +1,8 @@
 package bloczek.pl.dto
 
-data class SubcategoryDto()
+import bloczek.pl.enums.Subcategory
+
+data class SubcategoryDto(
+    val name: Subcategory,
+    val title: String
+)

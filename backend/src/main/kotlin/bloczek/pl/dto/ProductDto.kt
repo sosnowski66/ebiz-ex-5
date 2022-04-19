@@ -1,3 +1,3 @@
 package bloczek.pl.dto
 
-data class ProductDto()
+// data class ProductDto()
