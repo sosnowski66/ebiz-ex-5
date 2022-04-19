@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Product, ShopContextState } from "../types";
+import { CategoryWithSub, Product, ShopContextState } from "../types";
 import { fetchProducts } from "../api/ProductsApi";
-import products from "../components/Products/Products";
+import { fetchCategories } from "../api/CategoryApi";
 
 const defaultState: ShopContextState = {
 	products: [],
-	reset: () => console.log("sad")
+	categories: []
 }
 
 export const ShopContext = React.createContext(defaultState)
 
 export const ShopContextProvider:React.FC<{children: React.ReactElement}> = ({children}) => {
 	const [products, setProducts] = useState<Product[]>([]);
+	const [categories, setCategories] = useState<CategoryWithSub[]>([]);
 
 	useEffect(() => {
-		fetchProducts().then(res => {
-			// console.log(res);
-			setProducts(res);
-		})
+		fetchProducts().then(res => setProducts(res));
+		fetchCategories().then(res => setCategories(res));
 	}, [])
 
 	const providerValue: ShopContextState = {
 		products,
-		reset: () => setProducts([])
+		categories
 	}
 
 	return (

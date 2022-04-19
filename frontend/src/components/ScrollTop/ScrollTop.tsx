@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, useScrollTrigger, Zoom } from "@mui/material";
+import { Box, Fab, useScrollTrigger, Zoom } from "@mui/material";
+import { KeyboardArrowUp } from "@mui/icons-material";
 
 interface ScrollTopProps {
-	children: React.ReactElement
+	children?: React.ReactElement
 }
 
 const ScrollTop: React.FC<ScrollTopProps> = ({children}) => {
@@ -32,7 +33,9 @@ const ScrollTop: React.FC<ScrollTopProps> = ({children}) => {
 				role="presentation"
 				sx={{ position: 'fixed', bottom: 16, right: 16 }}
 			>
-				{children}
+				<Fab color="secondary" size="small" aria-label="scroll back to top">
+					<KeyboardArrowUp />
+				</Fab>
 			</Box>
 		</Zoom>
 	);
